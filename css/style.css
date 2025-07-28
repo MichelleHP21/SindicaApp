@@ -8,7 +8,7 @@
 /* Título del navbar */
 .navbar-title {
   font-family: 'Roboto', sans-serif;
-  font-size: 28px;
+  font-size: 40px;
   font-weight: 700;
 }
 
@@ -17,8 +17,10 @@
   max-width: 400px;
   margin: 10px auto;
   padding: 30px;
-  background-color: #f9f9f9;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #c2e3c4;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.271);
+  font-family: 'Roboto', sans-serif;
   text-align: center;
 }
 
@@ -56,3 +58,86 @@ button:hover {
   margin-bottom: 4px;
   font-weight: 600;
 }
+
+.card-body {
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: #c2e3c4 !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  font-family: 'Roboto', sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:focus, a:active {
+  outline: none;
+  border: none;
+}
+
+/* Estilo base del enlace */
+.nav-link {
+  color: white; /* color de texto por defecto */
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Cuando el cursor pasa sobre el enlace */
+.nav-link:hover {
+  background-color: #ffffff33; /* fondo blanco semi-transparente */
+  color: #ffc107; /* texto amarillo como efecto */
+}
+/* Estilo del enlace de "Olvidaste tu contraseña" */
+.forgot-password {
+  color: #02542D; /* Color verde */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+a.card-link:focus,
+a.card-link:active {
+  outline: none;
+  border: none;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.custom-card {
+  background-color: #c2e3c4;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+/* Estilo de los iconos dentro de las tarjetas */
+.icon-container {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
