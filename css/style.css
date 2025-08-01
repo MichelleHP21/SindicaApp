@@ -24,6 +24,93 @@
   text-align: center;
 }
 
+.menu-lateral {
+  width: 250px;
+  background-color: #1a7540;
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.menu-lateral h3 {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.menu-lateral ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-lateral li a {
+  display: block;
+  padding: 10px 0;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.menu-lateral li a:hover {
+  background-color: #145c31;
+  transform: translateX(5px);
+}
+
+/* Estado contraído */
+.menu-lateral.collapsed {
+  width: 70px;
+  padding: 20px 10px;
+}
+
+/* Ocultar texto cuando está contraído */
+.menu-lateral.collapsed .menu-text {
+  display: none;
+}
+
+/* Mostrar texto cuando está expandido */
+.menu-lateral .menu-text {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+  transition: opacity 0.3s ease;
+}
+
+/* Íconos alineados al centro */
+.menu-lateral.collapsed a {
+  justify-content: center;
+}
+
+/* Íconos con espacio */
+.menu-lateral i {
+  font-size: 1.5rem;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 10px 0;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+  background-color: #145c31;
+  transform: translateX(5px);
+}
+/* Botón hamburguesa */
+#toggleMenu {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
 /* Inputs y botones */
 input[type="text"],
 input[type="password"] {
@@ -60,7 +147,7 @@ button:hover {
 }
 
 .card-body {
-  max-width: 400px;
+  max-width: 700px;
   padding: 30px;
   border-radius: 5px;
   background-color: #c2e3c4 !important;
@@ -71,6 +158,10 @@ button:hover {
   display: flex;
   height: 100%;
   flex-direction: column;
+}
+
+.card-personales{
+  background-color: white;
 }
 
 a {
@@ -84,7 +175,7 @@ a:focus, a:active {
 
 /* Estilo base del enlace */
 .nav-link {
-  color: white; /* color de texto por defecto */
+  color: #ffffff; /* color de texto por defecto */
   text-decoration: none;
   padding: 10px 15px;
   border-radius: 5px;
@@ -141,3 +232,270 @@ a.card-link:active {
   justify-content: center;
 }
 
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Estilos adicionales para la pantalla de Configuración */
+/* Estos estilos se añaden a tus estilos existentes */
+
+/* Administrador container */
+.admin-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.admin-form {
+    flex: 2;
+}
+
+.profile-sidebar {
+    flex: 0 0 250px;
+}
+
+/* Secciones del formulario - adaptado a tu estilo */
+.form-section {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Grupos de formulario - adaptado a tus inputs existentes */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+    font-size: 14px;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Sobrescribir estilos de input específicos para esta pantalla */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 0 0 0 0; /* Reset margin de tus estilos globales */
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+    outline: none;
+    border-color: #02542D; /* Tu color verde */
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(2, 84, 45, 0.1);
+}
+
+.form-group input[readonly] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    color: #666;
+}
+
+.form-group input[readonly]:hover {
+    background-color: #f0f0f0;
+}
+
+/* Campos de contraseña */
+.password-field {
+    font-family: 'Courier New', monospace !important;
+    letter-spacing: 2px;
+    font-size: 16px !important;
+}
+
+/* Card de perfil - adaptado a tu estilo */
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+.profile-avatar-large {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #02542D, #1a7540); /* Tus colores verdes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0 auto 25px;
+    border: 4px solid white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+}
+
+.profile-avatar-large:hover {
+    transform: scale(1.05);
+}
+
+/* Botones - adaptado a tu estilo pero específicos para esta pantalla */
+.edit-btn {
+    background-color: #02542D; /* Tu color verde */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+    width: auto; /* Override del width: 100% global */
+}
+
+.edit-btn:hover {
+    background-color: #02542D;
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+.save-btn {
+    background-color: #02542D; /* Tu color verde */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    float: right;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    width: auto; /* Override del width: 100% global */
+}
+
+.save-btn:hover {
+    background-color: #02542D;
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+/* Título de la página */
+.flex-grow-1 h2 {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #02542D; /* Tu color verde */
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-container {
+        flex-direction: column;
+    }
+    
+    .profile-sidebar {
+        flex: none;
+        order: -1;
+    }
+    
+    .form-section,
+    .profile-card {
+        margin-bottom: 20px;
+    }
+}
+
+/* Estilos para los modales - adaptado a tus colores */
+.modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    background-color: #02542D; /* Tu color verde */
+    color: white;
+    border-radius: 12px 12px 0 0;
+}
+
+.modal-title {
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn-close {
+    filter: invert(1);
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.modal-footer .btn-primary {
+    background-color: #02542D; /* Tu color verde */
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #02542D;
+    opacity: 0.8;
+}
+
+/* Clear fix para botones flotantes */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
