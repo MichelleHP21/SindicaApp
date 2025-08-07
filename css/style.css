@@ -499,3 +499,98 @@ a.card-link:active {
     display: table;
     clear: both;
 }
+
+.card-especificos {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  padding: 25px 30px;
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.card-especificos h5 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #004d99;
+  border-bottom: 2px solid #004d99;
+  padding-bottom: 10px;
+}
+
+.card-especificos .info-label {
+  font-weight: bold;
+  color: #666;
+}
+
+.card-especificos .info-value {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.card-especificos .info-section {
+  margin-bottom: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.card-especificos .btn-cerrar {
+  background-color: #004d99;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.card-especificos .btn-cerrar:hover {
+  background-color: #003366;
+}
+
+/* Contenedor para input con ícono */
+.password-field-container {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+}
+        
+.password-field-container input.form-control {
+  padding-right: 45px !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+        
+.password-field-container .password-eye {
+  position: absolute !important;
+  top: 50% !important;
+  right: 12px !important;
+  transform: translateY(-50%) !important;
+  cursor: pointer !important;
+  color: #6c757d !important;
+  font-size: 16px !important;
+  z-index: 10 !important;
+  line-height: 1 !important;
+  pointer-events: all !important;
+  user-select: none !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  display: inline-block !important;
+}
+
+.password-field-container .password-eye:hover {
+  color: #495057 !important;
+}
+
+.password-field-container .password-eye:before {
+  position: static !important;
+}

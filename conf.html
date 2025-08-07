@@ -56,11 +56,9 @@
                     <h3 class="menu-text">Menú</h3>
                 </button>
                 </li>
-                <li><a href="inicio.html"><i class="bi bi-house"></i><span class="menu-text">Inicio</span></a></li>
-                <li><a href="trabajadores.html"><i class="bi bi-people"></i><span class="menu-text">Trabajadores</span></a></li>
-                <li><a href="configuracion.html"><i class="bi bi-gear"></i><span class="menu-text">Configuración</span></a></li>
-                <li><a href="formatos.html"><i class="bi bi-file-earmark-text"></i><span class="menu-text">Formatos</span></a></li>
-                <li><a href="registrar.html"><i class="bi bi-person-add"></i><span class="menu-text">Registrar</span></a></li>
+                <li><a href="inicio1.html"><i class="bi bi-house"></i><span class="menu-text">Inicio</span></a></li>
+                <li><a href="formdisponibles.html"><i class="bi bi-file-earmark-text"></i><span class="menu-text">Formatos Disponibles</span></a></li>
+                <li><a href="conf.html"><i class="bi bi-gear"></i><span class="menu-text">Configuración</span></a></li>
                 <li><a href="#" class="cerrar-sesion"><i class="bi bi-box-arrow-right"></i><span class="menu-text">Cerrar sesión</span></a></li>
             </ul>
         </nav>
@@ -71,7 +69,7 @@
             <nav aria-label="breadcrumb" class="mb-4">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="inicio.html" class="text-decoration-none">
+                        <a href="inicio1.html" class="text-decoration-none">
                             <i class="bi bi-house me-1"></i>Inicio
                         </a>
                     </li>
@@ -184,7 +182,8 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>    
+                <!-- Sidebar para cambiar contraseña -->
                 <div class="profile-sidebar">
                     <div class="profile-card">
                         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -241,7 +240,7 @@
                             </form>
                         </div>
                     </div>
-                </div>   
+                </div>
             </div>
         </main>
     </div>
@@ -252,7 +251,7 @@
         const usuarioStr = localStorage.getItem("usuario");
         const usuario = usuarioStr ? JSON.parse(usuarioStr) : null;
 
-        if (!usuario || usuario.Rol !== "administrador") {
+        if (!usuario || usuario.Rol !== "trabajador") {
             window.location.href = "index.html";
         }
     });

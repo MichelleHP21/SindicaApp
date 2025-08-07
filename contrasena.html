@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cambiar Contraseña</title>
+  <script src="java/sesion.js"></script>
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid align-items-center justify-content-between position-relative">
+      <!-- Logo -->
+      <a class="navbar-brand" href="#">
+        <img src="img/logosindicato.png" alt="Logo" width="130" height="120">
+      </a>
+
+      <!-- Título centrado -->
+      <span class="navbar-title text-white mx-auto position-absolute top-50 start-50 translate-middle">
+        RepSindical HGZ NO.2
+      </span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2 class="mb-4">Cambiar Contraseña</h2>
+
+    <form id="form-cambio-contrasena">
+      <div class="mb-3">
+        <label for="contrasena-actual" class="form-label">Contraseña Actual</label>
+        <input type="password" class="form-control" id="contrasena-actual" required>
+      </div>
+      <div class="mb-3">
+        <label for="nueva-contrasena" class="form-label">Nueva Contraseña</label>
+        <input type="password" class="form-control" id="nueva-contrasena" required>
+      </div>
+      <div class="mb-3">
+        <label for="confirmar-contrasena" class="form-label">Confirmar Nueva Contraseña</label>
+        <input type="password" class="form-control" id="confirmar-contrasena" required>
+      </div>
+
+      <button type="submit" class="btn btn-success">
+        <i class="bi bi-check-circle me-1"></i> Guardar Contraseña
+      </button>
+      <button type="button" class="btn btn-secondary ms-2" onclick="regresar()">
+        <i class="bi bi-arrow-left-circle me-1"></i> Regresar
+      </button>
+    </form>
+  </div>
+
+  <script>
+    function regresar() {
+      const usuario = localStorage.getItem("usuario");
+      if (usuario) {
+        window.location.href = "configuracion.html";
+      } else {
+        window.location.href = "index.html";
+      }
+    }
+
+    document.getElementById("form-cambio-contrasena").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const actual = document.getElementById("contrasena-actual").value;
+      const nueva = document.getElementById("nueva-contrasena").value;
+      const confirmar = document.getElementById("confirmar-contrasena").value;
+
+      if (nueva !== confirmar) {
+        alert("La nueva contraseña y la confirmación no coinciden.");
+        return;
+      }
+
+      // Aquí puedes hacer tu lógica de cambio de contraseña, por ejemplo, enviando por fetch a tu backend.
+
+      alert("Contraseña cambiada exitosamente.");
+      this.reset();
+    });
+  </script>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="java/login.js"></script>
+</body>
+</html>

@@ -55,48 +55,26 @@
             <h3 class="menu-text">Menú</h3>
           </button>
         </li>
-        <li><a href="inicio.html"><i class="bi bi-house"></i><span class="menu-text">Inicio</span></a></li>
-        <li><a href="trabajadores.html"><i class="bi bi-people"></i><span class="menu-text">Trabajadores</span></a></li>
-        <li><a href="configuracion.html"><i class="bi bi-gear"></i><span class="menu-text">Configuración</span></a></li>
-        <li><a href="formatos.html"><i class="bi bi-file-earmark-text"></i><span class="menu-text">Formatos</span></a></li>
-        <li><a href="registrar.html"><i class="bi bi-person-add"></i><span class="menu-text">Registrar trabajador</span></a></li>
+        <li><a href="inicio1.html"><i class="bi bi-house"></i><span class="menu-text">Inicio</span></a></li>
+        <li><a href="formdisponibles.html"><i class="bi bi-file-earmark-text"></i><span class="menu-text">Formatos Disponibles</span></a></li>
+        <li><a href="conf.html"><i class="bi bi-gear"></i><span class="menu-text">Configuración</span></a></li>
         <li><a href="#" class="cerrar-sesion"><i class="bi bi-box-arrow-right"></i><span class="menu-text">Cerrar sesión</span></a></li>
       </ul>
     </nav>
     <!-- Contenido principal -->
     <div class="flex-grow-1 p-4">
       <h2><i class="bi bi-house"></i> Inicio</h2>
-      
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <a href="trabajadores.html" class="card-link text-decoration-none">
-            <div class="card h-100 shadow-sm border-0 card-hover">
-              <div class="card-body text-center p-4">
-                <i class="bi bi-people fs-1"></i>
-                <h3 class="fw-bold mb-3">Trabajadores</h3>
-                <ul class="list-unstyled text-muted me-1">
-                  <li>Agregar trabajador</li>
-                  <li>Ver trabajador</li>
-                  <li>Dar de baja</li>
-                  <li>Actualizar datos</li>
-                  <li>Buscar trabajador</li>
-                </ul>
-              </div>
-            </div>
-          </a>
-        </div>
 
+      <div class="row justify-content-center">
         <div class="col-md-4 mb-4">
-          <a href="formatos.html" class="card-link text-decoration-none">
+          <a href="formdisponibles.html" class="card-link text-decoration-none">
             <div class="card h-100 shadow-sm border-0 card-hover">
               <div class="card-body text-center p-4">
                 <i class="bi bi-file-earmark-text fs-1"></i>
                 <h3 class="fw-bold mb-3">Formatos</h3>
                   <ul class="list-unstyled text-muted me-1">
-                    <li>Habilitar formatos</li>
-                    <li>Deshabilitar formatos</li>
+                    <li>Formatos disponibles</li>
                     <li>Descargar formatos</li>
-                    <li>Estado de formatos</li>
                   </ul>
               </div>
             </div>
@@ -104,7 +82,7 @@
         </div>
 
         <div class="col-md-4 mb-4">
-          <a href="configuracion.html" class="card-link text-decoration-none">
+          <a href="conf.html" class="card-link text-decoration-none">
             <div class="card h-100 shadow-sm border-0 card-hover">
               <div class="card-body text-center p-4">
                 <i class="bi bi-gear fs-1"></i>
@@ -126,7 +104,7 @@
         const usuarioStr = localStorage.getItem("usuario");
         const usuario = usuarioStr ? JSON.parse(usuarioStr) : null;
 
-        if (!usuario || usuario.Rol !== "administrador") {
+        if (!usuario || usuario.Rol !== "trabajador") {
             window.location.href = "index.html";
         }
     });
