@@ -96,84 +96,20 @@
                         <tr>
                             <th scope="col" width="5%">#</th>
                             <th scope="col" width="25%">Nombre del Formato</th>
-                            <th scope="col" width="35%">Descripción</th>
                             <th scope="col" width="20%">Periodo de Vigencia</th>
                             <th scope="col" width="15%">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="cuerpoTablaFormatos">
+                        <!-- Mensaje inicial de carga -->
                         <tr>
-                            <th scope="row">1</th>
-                            <td>
-                                <i class="bi bi-file-pdf text-danger me-2"></i>
-                                <strong>Concepto 026</strong>
-                            </td>
-                            <td>Solicitud para el trámite de la compensación fija para pasajes</td>
-                            <td>
-                                <span class="badge bg-success">15 Ene - 31 Dic 2025</span>
-                            </td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <button class="btn btn-primary btn-sm" 
-                                            onclick="llenarFormato('concepto026')" 
-                                            title="Llenar formato">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </button>
-                                    <button class="btn btn-outline-success btn-sm" 
-                                            onclick="descargarFormato('concepto026')" 
-                                            title="Descargar formato vacío">
-                                        <i class="bi bi-download"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>
-                                <i class="bi bi-file-pdf text-danger me-2"></i>
-                                <strong>Solicitud de Vacaciones</strong>
-                            </td>
-                            <td>Formato para solicitar días de vacaciones y descanso</td>
-                            <td>
-                                <span class="badge bg-success">01 Ene - 31 Dic 2025</span>
-                            </td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <button class="btn btn-primary btn-sm" 
-                                            onclick="llenarFormato('vacaciones')" 
-                                            title="Llenar formato">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </button>
-                                    <button class="btn btn-outline-success btn-sm" 
-                                            onclick="descargarFormato('vacaciones')" 
-                                            title="Descargar formato vacío">
-                                        <i class="bi bi-download"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>
-                                <i class="bi bi-file-pdf text-danger me-2"></i>
-                                <strong>Incapacidad Médica</strong>
-                            </td>
-                            <td>Formato para reportar incapacidades por motivos médicos</td>
-                            <td>
-                                <span class="badge bg-success">01 Ene - 31 Dic 2025</span>
-                            </td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <button class="btn btn-primary btn-sm" 
-                                            onclick="llenarFormato('incapacidad')" 
-                                            title="Llenar formato">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </button>
-                                    <button class="btn btn-outline-success btn-sm" 
-                                            onclick="descargarFormato('incapacidad')" 
-                                            title="Descargar formato vacío">
-                                        <i class="bi bi-download"></i>
-                                    </button>
+                            <td colspan="4" class="text-center py-5">
+                                <div class="text-primary">
+                                    <div class="spinner-border mb-3" role="status">
+                                        <span class="visually-hidden">Cargando...</span>
+                                    </div>
+                                    <h5>Cargando formatos disponibles...</h5>
+                                    <p class="text-muted">Por favor espere un momento</p>
                                 </div>
                             </td>
                         </tr>

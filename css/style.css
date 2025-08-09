@@ -594,3 +594,29 @@ a.card-link:active {
 .password-field-container .password-eye:before {
   position: static !important;
 }
+
+/* Asegura que los form-groups mantengan su posición */
+.form-group {
+  position: relative;
+  margin-bottom: 1rem;
+  min-height: 75px; /* Altura mínima para evitar saltos */
+}
+
+/* Estilo específico para los selects */
+.form-select {
+  position: static !important; /* Elimina cualquier posicionamiento absoluto */
+  transform: none !important;
+}
+
+/* Contenedor principal de los campos */
+.admin-form .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start; /* Alinea los items en la parte superior */
+}
+
+/* Asegura que las columnas mantengan su alineación */
+.col-md-6, .col-md-3, .col-md-12 {
+  display: flex;
+  flex-direction: column;
+}

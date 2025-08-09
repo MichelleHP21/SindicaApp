@@ -125,15 +125,51 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label><i class="bi bi-briefcase me-1"></i>Categoría:</label>
-                                <input type="text" id="categoria" readonly>
+                                <select id="categoria" class="form-select" disabled>
+                                    <option value="">Seleccione una categoría</option>
+                                    <option value="Enfermería">Enfermería</option>
+                                    <option value="Médicos">Médicos</option>
+                                    <option value="Farmaceuticos">Farmaceuticos</option>
+                                    <option value="Administrativo">Administrativo</option>
+                                    <option value="Trabajo Social">Trabajo Social</option>
+                                    <option value="Conservación">Conservación</option>
+                                    <option value="Lavanderia">Lavanderia</option>
+                                    <option value="Laboratoristas">Laboratoristas</option>
+                                    <option value="Asistente Médico">Asistente Médico</option>
+                                    <option value="Operador de Ambuláncia">Operador de Ambuláncia</option>
+                                    <option value="Servicios de Nutrición y Dietetica">Servicios de Nutrición y Dietetica</option>
+                                    <option value="Técnico Radiólogo">Técnico Radiólogo</option>
+                                    <option value="Limpieza e Higiene">Limpieza e Higiene</option>
+                                    <option value="Camilleros">Camilleros</option>
+                                    <option value="Almacén">Almacén</option>
+                                    <option value="Soporte Técnico en Informática">Soporte Técnico en Informática</option>
+                                    <option value="Quirofano">Quirofano</option>
+                                    <option value="Nutrición y dietetica">Nutrición y dietetica</option>
+                                    <option value="Sector Estadística">Sector Estadística</option>
+                                    <option value="Laboratorio">Laboratorio</option>
+                                    <option value="Representación Sindical">Representación Sindical</option>
+                                    <option value="ARIMAC">ARIMAC</option>
+                                </select>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label><i class="bi bi-calendar-check me-1"></i>Tipo de Contratación:</label>
-                                <input type="text" id="contratacion" readonly>
+                                <select id="contratacion" class="form-select" disabled>
+                                    <option value="">Seleccione...</option>
+                                    <option value="Confianza">Confianza</option>
+                                    <option value="Base">Base</option>
+                                    <option value="Becado">Becado</option>
+                                </select>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label><i class="bi bi-clock me-1"></i>Turno:</label>
-                                <input type="text" id="turno" readonly>
+                                <select id="turno" class="form-select" disabled>
+                                    <option value="">Seleccione...</option>
+                                    <option value="Matutino">Matutino</option>
+                                    <option value="Vespertino">Vespertino</option>
+                                    <option value="Nocturno">Nocturno</option>
+                                    <option value="Mixto">Mixto</option>
+                                    <option value="Administrativo">Administrativo</option>
+                                </select>
                             </div>
                             <div class="col-md-3 form-group">
                                 <label><i class="bi bi-clock-history me-1"></i>Hora Inicio:</label>
@@ -191,10 +227,10 @@
                             <h3 class="profile-title mb-0">
                                 <i class="bi bi-lock me-2"></i>Cambiar Contraseña
                             </h3>
-                            <button class="btn btn-outline-primary btn-sm" onclick="toggleCambiarContrasena()">
-                                <i class="bi bi-pencil me-1"></i>Cambiar
-                            </button>
                         </div>
+                        <button class="btn btn-outline-primary btn-sm" onclick="toggleCambiarContrasena()">
+                            <i class="bi bi-pencil me-1"></i>Cambiar
+                        </button>
                         
                         <!-- Formulario para cambiar contraseña (inicialmente oculto) -->
                         <div id="form-cambiar-contrasena" style="display: none;">
@@ -351,7 +387,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="java/cerrarsesion.js"></script>
     <script src="java/configuracion.js"></script>
-    <script src="java/cambiarcontrasena.js"></script>
     <script src="java/menu.js"></script>
     <script src="java/sesion.js"></script>
 </body>

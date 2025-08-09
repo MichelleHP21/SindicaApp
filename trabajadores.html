@@ -14,8 +14,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
   <!--sweetAlert-->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="java/menu.js"></script>
-  <script src="java/cerrarsesion.js"></script>
 </head>
 <body>
   <!-- Navbar -->
@@ -36,7 +34,7 @@
                 <div class="dropdown">
                     <button class="btn btn-link text-white text-decoration-none dropdown-toggle d-flex align-items-center" 
                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="me-2">Zumiko Danae Montalvo López</span>
+                        <span id="nombreUsuarioNavbar" class="me-2"></span>
                         <img src="img/perfil.jpg" alt="Perfil Admin" class="rounded-circle" width="50" height="50">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -118,144 +116,143 @@
           </div>
         </div>
         <div class="table-responsive col-md-15">
-            <table class="table table-hover">
-            <thead>
+            <table id="tablaTrabajadores" class="table table-striped">
+              <thead>
                 <tr>
-                <th scope="col">#</th>
-                <th>Matrícula</th>
-                <th>Nombre</th>
-                <th>Departamento</th>
-                <th>Teléfono</th>
-                <th>Correo</th>
-                <th>Acciones</th>
+                  <th>#</th>
+                  <th>Matrícula</th>
+                  <th>Nombre</th>
+                  <th>Teléfono</th>
+                  <th>Correo</th>
+                  <th>Categoría</th>
+                  <th>Acciones</th>
                 </tr>
-            </thead>
-            <tbody>
-                <tr data-matricula="123456" data-nombre="Juan Pérez" data-departamento="Administración" data-telefono="555-1234" data-correo="juan.perez@example.com">
-                <td scope="row">1</td>
-                <td>123456</td>
-                <td>Juan Pérez</td>
-                <td>Administración</td>
-                <td>555-1234</td>
-                <td>juan.perez@example.com</td>
-                <td class="text-center">
-                  <button class="btn btn-outline-primary btn-sm me-2" onclick="editarTrabajador(this)" title="Editar">
-                    <i class="bi bi-pencil-square"></i>
-                  </button>
-                  <button class="btn btn-outline-info btn-sm me-2" onclick="verTrabajador(this)" title="Ver">
-                    <i class="bi bi-eye-fill"></i>
-                  </button>
-                  <button class="btn btn-outline-warning btn-sm" onclick="darDeBajaTrabajador(this)" title="Dar de baja">
-                    <i class="bi bi-person-dash-fill"></i>
-                  </button>
-                </td>
-                </tr>
-
-                <tr data-matricula="098765" data-nombre="Maria Pérez" data-departamento="Mantenimiento" data-telefono="1234567890" data-correo="maria.perez@example.com">
-                <td scope="row">2</td>
-                <td>098765</td>
-                <td>Maria Pérez</td>
-                <td>Mantenimiento</td>
-                <td>1234567890</td>
-                <td>maria.perez@example.com</td>
-                <td class="text-center">
-                  <button class="btn btn-outline-primary btn-sm me-2" onclick="editarTrabajador(this)" title="Editar">
-                    <i class="bi bi-pencil-square"></i>
-                  </button>
-                  <button class="btn btn-outline-info btn-sm me-2" onclick="verTrabajador(this)" title="Ver">
-                    <i class="bi bi-eye-fill"></i>
-                  </button>
-                  <button class="btn btn-outline-danger btn-sm" onclick="confirmarEliminacion('Maria Pérez')" title="Eliminar">
-                    <i class="bi bi-trash-fill"></i>
-                  </button>
-                </td>
-                </tr>
-
-                <tr data-matricula="789012" data-nombre="Ana Lopez" data-departamento="Enfermería" data-telefono="7711982189" data-correo="ana.lopez@example.com">
-                <td scope="row">3</td>
-                <td>789012</td>
-                <td>Ana Lopez</td>
-                <td>Enfermería</td>
-                <td>7711982189</td>
-                <td>ana.lopez@example.com</td>
-                <td class="text-center">
-                  <button class="btn btn-outline-primary btn-sm me-2" onclick="editarTrabajador(this)" title="Editar">
-                    <i class="bi bi-pencil-square"></i>
-                  </button>
-                  <button class="btn btn-outline-info btn-sm me-2" onclick="verTrabajador(this)" title="Ver">
-                    <i class="bi bi-eye-fill"></i>
-                  </button>
-                  <button class="btn btn-outline-danger btn-sm" onclick="confirmarEliminacion('Ana Lopez')" title="Eliminar">
-                    <i class="bi bi-trash-fill"></i>
-                  </button>
-                </td>
-                </tr>
-                <!-- Más filas de trabajadores -->
-            </tbody>
+              </thead>
+              <tbody id="tablaTrabajadoresBody">
+                <!-- Aquí se insertan las filas con JavaScript -->
+              </tbody>
             </table>
             
             <!-- Modal Editar Trabajador -->
             <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
-                  <div class="modal-header text-dark">
-                    <h5 class="modal-title text-white" id="editarModalLabel">
-                      <i class="bi bi-pencil-square me-2 text-white"></i>Editar Trabajador
+                  <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="editarModalLabel">
+                      <i class="bi bi-pencil-square me-2"></i>Editar Trabajador
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                   </div>
                   <div class="modal-body">
                     <form id="formularioEditar">
                       <div class="row">
-                        <div class="col-md-6">
-                          <div class="mb-3">
-                            <label for="editMatricula" class="form-label">
-                              <i class="bi bi-card-text me-1"></i>Matrícula
-                            </label>
-                            <input type="text" class="form-control" id="editMatricula" readonly>
-                          </div>
-                          <div class="mb-3">
-                            <label for="editNombre" class="form-label">
-                              <i class="bi bi-person me-1"></i>Nombre Completo
-                            </label>
-                            <input type="text" class="form-control" id="editNombre" required>
-                          </div>
-                          <div class="mb-3">
-                            <label for="editDepartamento" class="form-label">
-                              <i class="bi bi-building me-1"></i>Departamento
-                            </label>
-                            <select class="form-select" id="editDepartamento" required>
-                              <option value="">Seleccionar departamento</option>
-                              <option value="Administración">Administración</option>
-                              <option value="Recursos Humanos">Recursos Humanos</option>
-                              <option value="Mantenimiento">Mantenimiento</option>
-                              <option value="Enfermería">Enfermería</option>
-                            </select>
-                          </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-card-text me-1"></i>Matrícula:</label>
+                          <input type="text" class="form-control" id="editMatricula" readonly>
                         </div>
-                        <div class="col-md-6">
-                          <div class="mb-3">
-                            <label for="editTelefono" class="form-label">
-                              <i class="bi bi-telephone me-1"></i>Teléfono
-                            </label>
-                            <input type="tel" class="form-control" id="editTelefono" required>
-                          </div>
-                          <div class="mb-3">
-                            <label for="editCorreo" class="form-label">
-                              <i class="bi bi-envelope me-1"></i>Correo Electrónico
-                            </label>
-                            <input type="email" class="form-control" id="editCorreo" required>
-                          </div>
-                          <div class="mb-3">
-                            <label class="form-label">
-                              <i class="bi bi-shield-check me-1"></i>Estado
-                            </label>
-                            <div>
-                              <span class="badge bg-success badge-custom">
-                                <i class="bi bi-check-circle me-1"></i>Activo
-                              </span>
-                            </div>
-                          </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-person me-1"></i>Nombre(s):</label>
+                          <input type="text" class="form-control" id="editNombre" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-card-heading me-1"></i>Apellido Paterno:</label>
+                          <input type="text" class="form-control" id="editApellidoPaterno" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-card-heading me-1"></i>Apellido Materno:</label>
+                          <input type="text" class="form-control" id="editApellidoMaterno">
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-building me-1"></i>OOAD:</label>
+                          <input type="text" class="form-control" id="editOoad" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-person-badge me-1"></i>No. de Plaza:</label>
+                          <input type="text" class="form-control" id="editNoPlaza">
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-briefcase me-1"></i>Categoría:</label>
+                          <select id="editCategoria" class="form-select" required>
+                            <option value="">Seleccione una categoría</option>
+                            <option value="Enfermería">Enfermería</option>
+                            <option value="Médicos">Médicos</option>
+                            <option value="Farmaceuticos">Farmaceuticos</option>
+                            <option value="Administrativo">Administrativo</option>
+                            <option value="Trabajo Social">Trabajo Social</option>
+                            <option value="Conservación">Conservación</option>
+                            <option value="Lavanderia">Lavanderia</option>
+                            <option value="Laboratoristas">Laboratoristas</option>
+                            <option value="Asistente Médico">Asistente Médico</option>
+                            <option value="Operador de Ambuláncia">Operador de Ambuláncia</option>
+                            <option value="Servicios de Nutrición y Dietetica">Servicios de Nutrición y Dietetica</option>
+                            <option value="Técnico Radiólogo">Técnico Radiólogo</option>
+                            <option value="Limpieza e Higiene">Limpieza e Higiene</option>
+                            <option value="Camilleros">Camilleros</option>
+                            <option value="Almacén">Almacén</option>
+                            <option value="Soporte Técnico en Informática">Soporte Técnico en Informática</option>
+                            <option value="Quirofano">Quirofano</option>
+                            <option value="Nutrición y dietetica">Nutrición y dietetica</option>
+                            <option value="Sector Estadística">Sector Estadística</option>
+                            <option value="Laboratorio">Laboratorio</option>
+                            <option value="Representación Sindical">Representación Sindical</option>
+                            <option value="ARIMAC">ARIMAC</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-calendar-check me-1"></i>Tipo de Contratación:</label>
+                          <select id="editContratacion" class="form-select" required>
+                            <option value="">Seleccione...</option>
+                            <option value="Confianza">Confianza</option>
+                            <option value="Base">Base</option>
+                            <option value="Becado">Becado</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-clock me-1"></i>Turno:</label>
+                          <select id="editTurno" class="form-select" required>
+                            <option value="">Seleccione...</option>
+                            <option value="Matutino">Matutino</option>
+                            <option value="Vespertino">Vespertino</option>
+                            <option value="Nocturno">Nocturno</option>
+                            <option value="Mixto">Mixto</option>
+                            <option value="Administrativo">Administrativo</option>
+                          </select>
+                        </div>
+                        <div class="col-md-3 form-group">
+                          <label><i class="bi bi-clock-history me-1"></i>Hora Inicio:</label>
+                          <input type="time" class="form-control" id="editHoraInicio">
+                        </div>
+                        <div class="col-md-3 form-group">
+                          <label><i class="bi bi-clock me-1"></i>Hora Fin:</label>
+                          <input type="time" class="form-control" id="editHoraFin">
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-envelope me-1"></i>Correo Electrónico:</label>
+                          <input type="email" class="form-control" id="editCorreo" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-calendar me-1"></i>Día de Descanso:</label>
+                          <input type="text" class="form-control" id="editDiaDescanso">
+                        </div>
+                        <div class="col-md-12 form-group">
+                          <label><i class="bi bi-geo-alt me-1"></i>Dirección:</label>
+                          <input type="text" class="form-control" id="editDireccion">
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-telephone me-1"></i>Teléfono:</label>
+                          <input type="tel" class="form-control" id="editTelefono" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-person-vcard me-1"></i>CURP:</label>
+                          <input type="text" class="form-control" id="editCurp">
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-person-vcard-fill me-1"></i>RFC:</label>
+                          <input type="text" class="form-control" id="editRfc">
+                        </div>
+                        <div class="col-md-6 form-group">
+                          <label><i class="bi bi-calendar-date me-1"></i>Fecha de Nacimiento:</label>
+                          <input type="date" class="form-control" id="editFechaNac">
                         </div>
                       </div>
                     </form>
@@ -264,7 +261,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                       <i class="bi bi-x-circle me-1"></i>Cancelar
                     </button>
-                    <button type="button" class="btn btn-success" id="btnGuardarEdicion">
+                    <button type="button" class="btn btn-primary" id="btnGuardarEdicion">
                       <i class="bi bi-save me-1"></i>Guardar Cambios
                     </button>
                   </div>
@@ -364,6 +361,9 @@
     });
   </script> 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="java/trabajadores.js"></script>
+  <script src="java/trabajadores.js?v=2.0"></script>
+  <script src="java/sesion.js"></script>
+  <script src="java/menu.js"></script>
+  <script src="java/cerrarsesion.js"></script>
 </body>
 </html>
