@@ -16,6 +16,8 @@ $pdf->SetFont('Arial', '', 10);
 $pdf->SetTextColor(0, 0, 0); // Color negro
 
 // Puedes recibir datos desde el frontend con GET o POST
+// Aquí se usan valores por defecto si no se reciben datos
+$fechaSolicitud = $_GET['fechaSolicitud'] ?? '2024-01-01';
 $nombre = $_GET['nombres'] ?? 'Nombre de ejemplo';
 $apellidoPaterno = $_GET['apellidoPaterno'] ?? 'Apellido Paterno de ejemplo';
 $apellidoMaterno = $_GET['apellidoMaterno'] ?? 'Apellido Materno de ejemplo';
@@ -35,6 +37,8 @@ $observaciones = $_GET ['observaciones'] ?? 'observaciones';
 
 
 // Escribir sobre el PDF en coordenadas X, Y
+$pdf->SetXY(30, 61);
+$pdf->Write(0, utf8_decode("$fechaSolicitud"));
 $pdf->SetXY(150, 73);
 $pdf->Write(0, utf8_decode("$nombre"));
 

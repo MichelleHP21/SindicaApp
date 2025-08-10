@@ -129,6 +129,12 @@ function cargarCamposEspecificos(tipoFormato, idFormato) {
             camposHTML = `
                 <!-- DATOS DEL TRABAJADOR -->
                 <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <h5 class="text-success border-bottom pb-2">Fecha de solicitud</h5>
+                        <input type="date" class="form-control" id="fechaSolicitud" required>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-12 mb-3">
                         <h5 class="text-success border-bottom pb-2">DATOS DEL TRABAJADOR</h5>
                     </div>
@@ -426,6 +432,8 @@ function llenarCamposEspecificos(tipoFormato, datos) {
 
     switch(tipoFormato) {
         case 'concepto026':
+            // Llenar campos específicos de concepto026
+            llenarCampo('fechaSolicitud', datos.FechaSolicitud);
             llenarCampo('apellidoPaterno', datos.ApellidoPaterno);
             llenarCampo('apellidoMaterno', datos.ApellidoMaterno);
             llenarCampo('nombres', datos.Nombre);
@@ -475,6 +483,7 @@ function verArchivo() {
 
                     switch(tipoFormato) {
                         case 'concepto026':
+                            params.append('fechaSolicitud', document.getElementById('fechaSolicitud')?.value || '');
                             params.append('apellidoPaterno', document.getElementById('apellidoPaterno')?.value || '');
                             params.append('apellidoMaterno', document.getElementById('apellidoMaterno')?.value || '');
                             params.append('nombres', document.getElementById('nombres')?.value || '');
@@ -527,6 +536,7 @@ async function descargarPDFLleno() {
         switch(tipoFormato) {
             case 'concepto026':
                 datos = {
+                    fechaSolicitud: document.getElementById('fechaSolicitud')?.value || '',
                     apellidoPaterno: document.getElementById('apellidoPaterno')?.value || '',
                     apellidoMaterno: document.getElementById('apellidoMaterno')?.value || '',
                     nombres: document.getElementById('nombres')?.value || '',
@@ -579,102 +589,6 @@ async function descargarPDFLleno() {
     }
 }
 
-function guardarBorrador() {
-    try {
-        const datos = obtenerDatosFormulario();
-        const clave = `borrador_${formatoActual}_${idFormatoActual}`;
-        
-        localStorage.setItem(clave, JSON.stringify({
-            datos: datos,
-            fecha: new Date().toISOString(),
-            formato: formatoActual,
-            id: idFormatoActual
-        }));
-        
-        Swal.fire({
-            title: 'Borrador guardado',
-            text: 'Sus datos han sido guardados localmente',
-            icon: 'success',
-            timer: 2000
-        });
-    } catch (error) {
-        console.error('Error al guardar borrador:', error);
-        Swal.fire('Error', 'No se pudo guardar el borrador', 'error');
-    }
-}
-
-function enviarFormato() {
-    const form = document.querySelector('#modalLlenarFormato form') || 
-                  document.getElementById('formDatosUsuario');
-    
-    // Validar campos requeridos
-    const camposRequeridos = document.querySelectorAll('#datosEspecificos [required]');
-    let camposVacios = [];
-    
-    camposRequeridos.forEach(campo => {
-        if (!campo.value.trim()) {
-            camposVacios.push(campo.previousElementSibling?.textContent || 'Campo sin nombre');
-            campo.classList.add('is-invalid');
-        } else {
-            campo.classList.remove('is-invalid');
-        }
-    });
-
-    if (camposVacios.length > 0) {
-        return Swal.fire({
-            title: 'Campos incompletos',
-            html: `Por favor complete los siguientes campos:<br><br><strong>${camposVacios.join('<br>')}</strong>`,
-            icon: 'warning'
-        });
-    }
-
-    Swal.fire({
-        title: '¿Enviar formato?',
-        text: 'Una vez enviado, no podrá modificar los datos',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#28a745',
-        cancelButtonColor: '#6c757d',
-        confirmButtonText: 'Sí, enviar',
-        cancelButtonText: 'Cancelar'
-    }).then(async (result) => {
-        if (result.isConfirmed) {
-            try {
-                // Aquí iría la lógica real de envío al servidor
-                const datos = obtenerDatosFormulario();
-                
-                // Simular envío (reemplazar con llamada real al API)
-                const response = await fetch('api/enviarformato.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        id_formato: idFormatoActual,
-                        tipo: formatoActual,
-                        datos: datos
-                    })
-                });
-
-                if (response.ok) {
-                    Swal.fire({
-                        title: '¡Formato enviado!',
-                        text: 'Su solicitud ha sido enviada correctamente',
-                        icon: 'success'
-                    }).then(() => {
-                        bootstrap.Modal.getInstance(document.getElementById('modalLlenarFormato')).hide();
-                        actualizarTabla(); // Actualizar tabla por si cambia el estado
-                    });
-                } else {
-                    throw new Error('Error en el servidor');
-                }
-            } catch (error) {
-                console.error('Error al enviar formato:', error);
-                Swal.fire('Error', 'No se pudo enviar el formato. Intente nuevamente.', 'error');
-            }
-        }
-    });
-}
 
 // ==========================================
 // DESCARGA DE FORMATO VACÍO
@@ -850,76 +764,6 @@ function escapeJS(str) {
     return str.replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, '\\n').replace(/\r/g, '\\r');
 }
 
-// ==========================================
-// FUNCIONES ADICIONALES DE GESTIÓN
-// ==========================================
-
-// Cargar borrador guardado
-function cargarBorrador() {
-    try {
-        const clave = `borrador_${formatoActual}_${idFormatoActual}`;
-        const borradorStr = localStorage.getItem(clave);
-        
-        if (borradorStr) {
-            const borrador = JSON.parse(borradorStr);
-            
-            Swal.fire({
-                title: 'Borrador encontrado',
-                html: `Se encontró un borrador guardado el <strong>${new Date(borrador.fecha).toLocaleString()}</strong>.<br>¿Desea cargarlo?`,
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Cargar borrador',
-                cancelButtonText: 'Empezar nuevo'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Cargar datos del borrador
-                    Object.keys(borrador.datos).forEach(campo => {
-                        const elemento = document.getElementById(campo);
-                        if (elemento) {
-                            elemento.value = borrador.datos[campo];
-                        }
-                    });
-                    
-                    Swal.fire({
-                        title: 'Borrador cargado',
-                        text: 'Los datos del borrador han sido restaurados',
-                        icon: 'success',
-                        timer: 2000
-                    });
-                }
-            });
-        }
-    } catch (error) {
-        console.error('Error al cargar borrador:', error);
-    }
-}
-
-// Limpiar formulario
-function limpiarFormulario() {
-    Swal.fire({
-        title: '¿Limpiar formulario?',
-        text: 'Se perderán todos los datos ingresados',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, limpiar',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const inputs = document.querySelectorAll('#datosEspecificos input, #datosEspecificos select, #datosEspecificos textarea');
-            inputs.forEach(input => {
-                input.value = '';
-                input.classList.remove('is-invalid', 'is-valid');
-            });
-            
-            Swal.fire({
-                title: 'Formulario limpiado',
-                text: 'Todos los campos han sido vaciados',
-                icon: 'success',
-                timer: 1500
-            });
-        }
-    });
-}
 
 // Validar formulario en tiempo real
 function inicializarValidacion() {
@@ -945,101 +789,6 @@ function inicializarValidacion() {
         });
     });
 }
-
-// Auto-guardar borrador cada cierto tiempo
-let autoSaveInterval = null;
-
-function iniciarAutoGuardado() {
-    // Limpiar intervalo anterior si existe
-    if (autoSaveInterval) {
-        clearInterval(autoSaveInterval);
-    }
-    
-    // Auto-guardar cada 2 minutos
-    autoSaveInterval = setInterval(() => {
-        const datos = obtenerDatosFormulario();
-        const hayDatos = Object.values(datos).some(valor => valor && valor.trim());
-        
-        if (hayDatos) {
-            const clave = `autoguardado_${formatoActual}_${idFormatoActual}`;
-            localStorage.setItem(clave, JSON.stringify({
-                datos: datos,
-                fecha: new Date().toISOString(),
-                formato: formatoActual,
-                id: idFormatoActual
-            }));
-            
-            // Mostrar indicador sutil de autoguardado
-            const indicador = document.createElement('div');
-            indicador.className = 'position-fixed bottom-0 end-0 m-3';
-            indicador.innerHTML = `
-                <div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 0.8rem;">
-                    <i class="bi bi-check-circle me-1"></i>
-                    Autoguardado
-                    <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="alert"></button>
-                </div>
-            `;
-            document.body.appendChild(indicador);
-            
-            // Remover después de 3 segundos
-            setTimeout(() => {
-                if (document.body.contains(indicador)) {
-                    document.body.removeChild(indicador);
-                }
-            }, 3000);
-        }
-    }, 120000); // 2 minutos
-}
-
-function detenerAutoGuardado() {
-    if (autoSaveInterval) {
-        clearInterval(autoSaveInterval);
-        autoSaveInterval = null;
-    }
-}
-
-// ==========================================
-// EVENT LISTENERS ADICIONALES
-// ==========================================
-
-// Detectar cuando se abre el modal para inicializar funcionalidades
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('modalLlenarFormato');
-    if (modal) {
-        modal.addEventListener('shown.bs.modal', function() {
-            // Inicializar validación en tiempo real
-            setTimeout(() => {
-                inicializarValidacion();
-                iniciarAutoGuardado();
-                
-                // Verificar si hay borrador guardado
-                setTimeout(() => {
-                    cargarBorrador();
-                }, 1000);
-            }, 500);
-        });
-
-        modal.addEventListener('hidden.bs.modal', function() {
-            // Limpiar autoguardado cuando se cierra el modal
-            detenerAutoGuardado();
-        });
-    }
-});
-
-// Prevenir pérdida de datos al salir
-window.addEventListener('beforeunload', function(e) {
-    const modal = document.getElementById('modalLlenarFormato');
-    if (modal && modal.classList.contains('show')) {
-        const datos = obtenerDatosFormulario();
-        const hayDatos = Object.values(datos).some(valor => valor && valor.trim());
-        
-        if (hayDatos) {
-            e.preventDefault();
-            e.returnValue = 'Tiene cambios sin guardar. ¿Está seguro que desea salir?';
-            return e.returnValue;
-        }
-    }
-});
 
 // ==========================================
 // FUNCIONES DE DEBUGING Y LOGS

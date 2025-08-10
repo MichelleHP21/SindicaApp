@@ -1,6 +1,6 @@
 /* Navbar personalizado */
 .navbar-custom {
-  background-color: #02542D;
+  background-color: #02542D !important;
   height: 140px;
   position: relative;
 }
@@ -620,3 +620,4 @@ a.card-link:active {
   display: flex;
   flex-direction: column;
 }
+

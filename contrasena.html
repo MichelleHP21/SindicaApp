@@ -39,7 +39,7 @@
         <input type="text" class="form-control" id="matricula" required placeholder="Tu matrícula" />
       </div>
 
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" class="btn btn-success">
         <i class="bi bi-arrow-clockwise me-1"></i> Restablecer contraseña
       </button>
 
@@ -80,7 +80,7 @@ document.getElementById("form-restablecer-contrasena").addEventListener("submit"
   try {
   console.log("Enviando solicitud POST al API...");
 
-  const res = await fetch('http://localhost/sindicato/SindicaApp/api/reestablecercontrasena.php', {
+  const res = await fetch('https://sindicato/infinityfree.me/api/reestablecercontrasena.php', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({ matricula })
